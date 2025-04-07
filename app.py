@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
+import os
 
-app = Flask(__name__)
+# Tell Flask that templates are in the current folder
+app = Flask(__name__, template_folder='.')
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -17,6 +19,12 @@ def home():
         return render_template("index.html", output=output)
 
     return render_template("index.html", output=None)
+
+
+# server style.css manually
+@app.route('/style.css')
+def server_css():
+    return send_from_directory(os.path.dirname(__file__), 'style.css')
 
 if __name__ == "__main__":
     app.run(debug=True)
