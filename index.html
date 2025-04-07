@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent_calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Rent Splitter Calculator</h1>
+        <form method="POST">
+          <input type="number" name="rent" placeholder="Enter Rent" required>
+          <input type="number" name="food" placeholder="Enter Food Cost" required>
+          <input type="number" name="electricity_spend" placeholder="Electricity Units" required>
+          <input type="number" name="charge_per_unit" placeholder="Charge Per Unit" required>
+          <input type="number" name="persons" placeholder="Number of Persons" required>
+          <button type="submit">Calculate</button>
+        </form>
+    
+        {% if output is not none %}
+          <div class="result">
+            Each person will pay: ₹ {{ output }}
+          </div>
+        {% endif %}
+      </div>
+</body>
+</html>
